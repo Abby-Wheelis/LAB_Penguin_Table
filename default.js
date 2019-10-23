@@ -119,7 +119,7 @@ var AllGrades = function(penguin)
                 var quizgrades = quizzes.map(getGrade)
                 var meanQuizzes = d3.mean(quizgrades)
                 return meanQuizzes;
-         })//I got this funtion from above, I hope it works
+         })//I got this funtion from above, I hope it works-> it does not
     
     
     
