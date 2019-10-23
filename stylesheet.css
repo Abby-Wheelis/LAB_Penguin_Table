@@ -1,0 +1,42 @@
+#distress
+{
+    background-color: red;
+}
+
+#happy
+{
+    background-color: darkseagreen;
+}
+
+.totalGrade
+{
+    font-weight: bold;
+}
+
+img
+{
+    width: 100px;
+}
+
+body{
+    
+    background-color: #00A9D8;
+    font-size: 20px;
+    font-family: Helvetica;
+    text-align: center;
+}
+
+h1{
+    text-decoration: underline;
+}
+
+table{
+    border: 1px solid black;
+    align-content: center;
+    background-color: antiquewhite;
+}
+
+td, th, tr{
+    border: 1px solid black;
+    text-align: center;
+}

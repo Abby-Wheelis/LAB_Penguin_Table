@@ -11,10 +11,13 @@ function(data)
     console.log("baller code bro", data);
                 //prints the data in the console
     console.log(classroom.map(makeSummary));
-                //wanted to print all of the summaries in the log, mad about map? -> finally worked when I added a classroom.map, that makes sense because I needed to tell it to do it for all of the objects in the array
+    
+    console.log(classroom.map(getMeanQuiz));
+    var solutionToAll = classroom.map(getMeanQuiz)
     
     AllGrades(data); //this is the function that fills the table, starts line 103
     
+    SortPlease(data); // hopefully will sort the data by quizzes
 
 },
 
@@ -24,7 +27,7 @@ function(err)
 })
 //end of promise
 
-//function to return a summary of a given penguin
+//function to return a summary of a given penguin used in the console
 var makeSummary = function(penguin)
 {   
     var summary = {};
@@ -112,17 +115,18 @@ var AllGrades = function(penguin)
         .enter()
         .append("tr")
     
-    showPictures.append("img")
+    showPictures.append("td")
+    .append("img")
     .attr("src", function(totals)
         {
             return "penguins/" + totals.picture
         })
     
-    showPictures.append("td")
+    var answer = showPictures.append("td")
     .text(function(penguin)
         {
             return getMeanQuiz(penguin)
-        })
+        });
     
     showPictures.append("td")
     .text(function(penguin)
@@ -155,6 +159,44 @@ var AllGrades = function(penguin)
                 {
                     return "happy"
                 }
-        })
+        })    
+    
 }
+
+
+//var makeQuizArray = function
+
+
+
+var solutionToAll2 = classroom.map(getMeanQuiz)
+
+var SortPlease = function(penguin)
+{
+    document.getElementById("quiz").onclick = function(penguin)
+        {
+            alert("this part works");
+            solutionToAll2.sort(function(a,b)
+            {
+            return a.getMeanQuiz(penguin) - b.getMeaanQuiz(penguin);
+                if(a.getMeanQuiz(penguin) > b.getMeanQuiz(penguin))
+                    {
+                        return 1;
+                    }
+                else if (a.getMeanQuiz(penguin) < b.getMeanQuiz(penguin))
+                    {
+                        return -1;
+                    }
+                else
+                    {
+                        return 0;
+                    }
+            });
+        //function about sorting
+        //pleaseSort(penguin)
+        //call the sort function
+        alert("this part works too dammit");
+        }
+}
+
+
 
