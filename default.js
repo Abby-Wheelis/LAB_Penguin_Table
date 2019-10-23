@@ -99,7 +99,7 @@ var weightThisGrade = function(penguin)
 var AllGrades = function(penguin)
 {
     var demo = d3.select("#demo")
-    //var AllTotals = penguin.map(makeSummary);
+    //var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
     var showPictures = 
         d3.select("tbody")
         .selectAll("tr")
@@ -109,11 +109,7 @@ var AllGrades = function(penguin)
     
     showPictures
     .append("img")
-    .text(function(totals){
-            // return makeSummary.picture;})
-            return totals.picture
-        })
-        .attr("src", function(totals)
+    .attr("src", function(totals)
               {
                 return "penguins/" + totals.picture
               })
@@ -122,12 +118,15 @@ var AllGrades = function(penguin)
     .append("td")
     .text(function(totals)
          {
-        return totals.quizes
-    })
+                var quizzes = penguin.quizes;
+                var quizgrades = quizzes.map(getGrade)
+                var meanQuizzes = d3.mean(quizgrades)
+                return meanQuizzes;
+         })//I got this funtion from above, I hope it works
     
     
     
-    return AllTotals;
+    //return AllTotals;  // same down here with not helping but also not hurting
     
 }
 
