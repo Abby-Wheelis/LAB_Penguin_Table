@@ -7,24 +7,28 @@ var classroom = [];//to be used in log only
 PenguinPromise.then(
 function(data)
 {
-    classroom = data;
-    console.log("baller code bro", data);
-    console.log(AllGrades(data));
-    AllGrades(data);
-    //makeTable(data);
+    classroom = data; //this lets us do the things to test
+    console.log("baller code bro", data);//prints the data in the classroom
+    console.log(AllGrades(data)); //this makes code work?? penguins go away when I take it out// also saying undefined in the log?
+    console.log(makeSummary(data));//wanted to print all of the summaries in the log, mad about map?
+    
+    AllActualGrades(data); //undefined apparently
+    
+    AllGrades(data); //this is the function that makes the table, got it got it
 },
+
 function(err)
 {
   console.log("this code is bad", err);      
 })
 
 
-
+//function to return a summary of a given penguin
 var makeSummary = function(penguin)
 {   
     var summary = {};
     summary.picture = penguin.picture;
-    summary.meanQuiz = getMeanQuiz(penguin);
+    summary.meanQuiz = getMeanQuiz(penguin);//mad about map?
     summary.meanHomework = getMeanHomework(penguin);
     summary.meanTests = getMeanTests(penguin);
     summary.final = getFinal(penguin);
@@ -45,7 +49,7 @@ var getGrade = function(quiz)
 var getMeanQuiz = function(penguin)
 {
     var quizzes = penguin.quizes;
-    var quizgrades = quizzes.map(getGrade)
+    var quizgrades = quizzes.map(getGrade) //mad about map?
     var meanQuizzes = d3.mean(quizgrades)
     return meanQuizzes;
 }
@@ -59,6 +63,7 @@ var getMeanHomework = function(penguin)
     return meanHomework;
 }
 
+//average test grade for a given penguin function
 var getMeanTests = function(penguin)
 {
     var tests = penguin.test;
@@ -67,6 +72,7 @@ var getMeanTests = function(penguin)
     return meanTest;
 }
 
+//grade on final exam for a given penguin function
 var getFinal = function(penguin)
 {
     var final = penguin.final;
@@ -75,7 +81,7 @@ var getFinal = function(penguin)
     return meanFinal;
 }
 
-
+//final weighted grade for a given penguin function
 var weightThisGrade = function(penguin)
 {
     var QuizTotal = getMeanQuiz(penguin);
@@ -95,8 +101,8 @@ var weightThisGrade = function(penguin)
 
 var AllGrades = function(penguin)
 {
-    var demo = d3.select("#demo")
-    var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
+    //var demo = d3.select("#demo") //I don't think this is useful
+    //var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
     var showPictures = 
         d3.select("tbody")
         .selectAll("tr")
@@ -104,34 +110,36 @@ var AllGrades = function(penguin)
         .enter()
         .append("tr")
     
-    showPictures
-    .append("img")
+    showPictures.append("img")
     .attr("src", function(totals)
               {
                 return "penguins/" + totals.picture
               })
     
-    showPictures
-    .append("td")
-    .text(function(totals)
+    showPictures.append("td")
+    .text("aaaaaaaaaaaaahhhhhhhh")//okay so appending on the columns is working at least
+    
+    /*(getMeanQuiz(penguin))//also does not work*/
+    
+    /*(function(totals)
          {
                 var quizzes = penguin.quizes;
-                var quizgrades = quizzes.map(getGrade)
-                var meanQuizzes = d3.mean(quizgrades)
+                var quizgrades = quizzes.map(getGrade);
+                var meanQuizzes = d3.mean(quizgrades);
                 return meanQuizzes;
-         })//I got this funtion from above, I hope it works-> it does not
+         })//I got this funtion from above, I hope it works-> it does not*/
     
     
     
-    return AllTotals;  // same down here with not helping but also not hurting
+    //return AllTotals;  // same down here with not helping but also not hurting
     
 }
 
-var AllActualGrades = function(penguin)
+/*var AllActualGrades = function(penguin)
 {
     
         
-        /*d3.select("tbody").append("tr")
+        d3.select("tbody").append("tr")
         .selectAll("td")
         .data(penguin)
         .enter()
@@ -142,6 +150,6 @@ var AllActualGrades = function(penguin)
                 var totals = AllTotals;
                 return totals.meanQuiz
             })
-    */
-}
+    
+}*/
 //why did this work???
