@@ -8,20 +8,21 @@ PenguinPromise.then(
 function(data)
 {
     classroom = data; //this lets us do the things to test
-    console.log("baller code bro", data);//prints the data in the classroom
-    console.log(AllGrades(data)); //this makes code work?? penguins go away when I take it out// also saying undefined in the log?
-    console.log(makeSummary(data));//wanted to print all of the summaries in the log, mad about map?
+    console.log("baller code bro", data);
+                //prints the data in the console
+    console.log(classroom.map(makeSummary));
+                //wanted to print all of the summaries in the log, mad about map? -> finally worked when I added a classroom.map, that makes sense because I needed to tell it to do it for all of the objects in the array
     
-    AllActualGrades(data); //undefined apparently
+    AllGrades(data); //this is the function that fills the table, starts line 103
     
-    AllGrades(data); //this is the function that makes the table, got it got it
+
 },
 
 function(err)
 {
   console.log("this code is bad", err);      
 })
-
+//end of promise
 
 //function to return a summary of a given penguin
 var makeSummary = function(penguin)
@@ -36,7 +37,6 @@ var makeSummary = function(penguin)
    
     return summary;
 }
-
 
 
 //get Grade function
@@ -99,10 +99,12 @@ var weightThisGrade = function(penguin)
     return weightedGrade;
 }
 
+
+
+
+//working function to fill in the table with all of the data that we need
 var AllGrades = function(penguin)
 {
-    //var demo = d3.select("#demo") //I don't think this is useful
-    //var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
     var showPictures = 
         d3.select("tbody")
         .selectAll("tr")
@@ -112,44 +114,47 @@ var AllGrades = function(penguin)
     
     showPictures.append("img")
     .attr("src", function(totals)
-              {
-                return "penguins/" + totals.picture
-              })
+        {
+            return "penguins/" + totals.picture
+        })
     
     showPictures.append("td")
-    .text("aaaaaaaaaaaaahhhhhhhh")//okay so appending on the columns is working at least
+    .text(function(penguin)
+        {
+            return getMeanQuiz(penguin)
+        })
     
-    /*(getMeanQuiz(penguin))//also does not work*/
-    
-    /*(function(totals)
-         {
-                var quizzes = penguin.quizes;
-                var quizgrades = quizzes.map(getGrade);
-                var meanQuizzes = d3.mean(quizgrades);
-                return meanQuizzes;
-         })//I got this funtion from above, I hope it works-> it does not*/
-    
-    
-    
-    //return AllTotals;  // same down here with not helping but also not hurting
-    
+    showPictures.append("td")
+    .text(function(penguin)
+        {
+            return getMeanHomework(penguin)
+        })
+    showPictures.append("td")
+    .text(function(penguin)
+        {
+            return getMeanTests(penguin)
+        })
+    showPictures.append("td")
+    .text(function(penguin)
+        {
+            return getFinal(penguin)
+        })
+    showPictures.append("td")
+    .text(function(penguin)
+        {
+            return weightThisGrade(penguin)
+        })
+    .attr("class", "totalGrade")
+    .attr("id", function(penguin)
+        {
+            if(weightThisGrade(penguin) <= 70)
+                {
+                    return "distress"
+                }
+            else
+                {
+                    return "happy"
+                }
+        })
 }
 
-/*var AllActualGrades = function(penguin)
-{
-    
-        
-        d3.select("tbody").append("tr")
-        .selectAll("td")
-        .data(penguin)
-        .enter()
-        .append("td")
-        .text(function(totals)
-            {
-                // return makeSummary.picture;})
-                var totals = AllTotals;
-                return totals.meanQuiz
-            })
-    
-}*/
-//why did this work???
