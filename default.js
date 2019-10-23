@@ -8,12 +8,9 @@ PenguinPromise.then(
 function(data)
 {
     classroom = data;
-    console.log("baller code bro", data);  
-    
-    
+    console.log("baller code bro", data);
     console.log(AllGrades(data));
-    //AllGrades(data);
-    
+    AllGrades(data);
     //makeTable(data);
 },
 function(err)
@@ -99,7 +96,7 @@ var weightThisGrade = function(penguin)
 var AllGrades = function(penguin)
 {
     var demo = d3.select("#demo")
-    //var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
+    var AllTotals = penguin.map(makeSummary); //I don't think that this helps... or hurts?
     var showPictures = 
         d3.select("tbody")
         .selectAll("tr")
@@ -126,7 +123,7 @@ var AllGrades = function(penguin)
     
     
     
-    //return AllTotals;  // same down here with not helping but also not hurting
+    return AllTotals;  // same down here with not helping but also not hurting
     
 }
 
