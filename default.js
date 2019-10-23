@@ -99,7 +99,7 @@ var weightThisGrade = function(penguin)
 var AllGrades = function(penguin)
 {
     var demo = d3.select("#demo")
-    var AllTotals = penguin.map(makeSummary);
+    //var AllTotals = penguin.map(makeSummary);
     var showPictures = 
         d3.select("tbody")
         .selectAll("tr")
