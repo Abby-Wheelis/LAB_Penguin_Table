@@ -168,35 +168,26 @@ var AllGrades = function(penguin)
 
 
 
-var solutionToAll2 = classroom.map(getMeanQuiz)
+var sortQuiz = penguinSummaries.sort(QuizSort)
 
-var SortPlease = function(penguin)
+var QuizSort = function(a,b)
 {
-    document.getElementById("quiz").onclick = function(penguin)
+    if(a.meanQuiz>b.meanQuiz)
         {
-            alert("this part works");
-            solutionToAll2.sort(function(a,b)
-            {
-            return a.getMeanQuiz(penguin) - b.getMeaanQuiz(penguin);
-                if(a.getMeanQuiz(penguin) > b.getMeanQuiz(penguin))
-                    {
-                        return 1;
-                    }
-                else if (a.getMeanQuiz(penguin) < b.getMeanQuiz(penguin))
-                    {
-                        return -1;
-                    }
-                else
-                    {
-                        return 0;
-                    }
-            });
-        //function about sorting
-        //pleaseSort(penguin)
-        //call the sort function
-        alert("this part works too dammit");
+            return 1
+        }
+    else if (a.meanQuiz,b.meanQuiz)
+        {
+            return -1
+        }
+    else
+        {
+            return 0
         }
 }
 
-
-
+d3.select(".quiz")
+.on("click", function(d)
+{
+    AllGrades(sortQuiz);
+})
