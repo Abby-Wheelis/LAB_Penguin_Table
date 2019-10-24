@@ -17,7 +17,7 @@ function(data)
     
     AllGrades(data); //this is the function that fills the table, starts line 103
     
-    SortPlease(data); // hopefully will sort the data by quizzes
+    //SortPlease(data); // hopefully will sort the data by quizzes
 
 },
 
