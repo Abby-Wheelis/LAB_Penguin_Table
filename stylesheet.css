@@ -40,3 +40,8 @@ td, th, tr{
     border: 1px solid black;
     text-align: center;
 }
+
+tr:hover
+{
+    background-color: d9e3da;   
+}
