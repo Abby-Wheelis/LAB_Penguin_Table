@@ -17,7 +17,7 @@ function(data)
     
     AllGrades(data); //this is the function that fills the table, starts line 103
     
-    //SortPlease(data); // hopefully will sort the data by quizzes
+    SortPlease(data); // hopefully will sort the data by quizzes
 
 },
 
@@ -166,9 +166,16 @@ var AllGrades = function(penguin)
 
 //var makeQuizArray = function
 
+var SortPlease = function(penguin)
+{
+    d3.select("#quiz")
+    .on("click", function(d)
+       {
+        alert("We got a click to work!! That's something! Check our code for some fun effort!!!")
+    })
+}
 
-
-var sortQuiz = penguinSummaries.sort(QuizSort)
+/*var sortQuiz = penguinSummaries.sort(QuizSort)
 
 var QuizSort = function(a,b)
 {
@@ -186,8 +193,8 @@ var QuizSort = function(a,b)
         }
 }
 
-d3.select(".quiz")
+d3.select("#quiz")
 .on("click", function(d)
 {
     AllGrades(sortQuiz);
-})
+})*/
