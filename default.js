@@ -166,12 +166,29 @@ var AllGrades = function(penguin)
 
 //var makeQuizArray = function
 
-var SortPlease = function(penguin)
+/*var SortPlease = function(penguin)
 {
     d3.select("#quiz")
     .on("click", function(d)
        {
         alert("We got a click to work!! That's something! Check our code for some fun effort!!!")
+    })
+}*/
+
+var QuizSort = function(penguins)
+{
+    d3.select("#quiz")
+    .on("click", function()
+    {
+        d3.selectAll(".penguinrows")
+        .remove();
+
+        penguins.sort(function(a,b)
+        {
+            return b.getMeanQuiz(b)-a.getMeanQuiz(a)
+        })
+
+        AllGrades(penguins);
     })
 }
 
